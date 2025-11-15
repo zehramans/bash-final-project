@@ -1,0 +1,3 @@
+123.45.67.89 - - [19/Nov/2024:08:10:30 +0000] "GET /index.html HTTP/1.1" 200 1234 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+123.45.67.89 - - [19/Nov/2024:0810:31 +0000] "GET /images/logo.png HTTP/1.1" 200 5678 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+198.76.54.32 - - [19/Nov/2024:08:11:05 +0000] "GET /nonexistent.html HTTP/1.1" 404 291 "-" "Curl/7.64.1"

@@ -1,0 +1,20 @@
+Nov 15 13:45:01 server1 sshd[12345]: Accepted publickey for user1 from 192.168.1.100 port 54321 ssh2: RSA SHA256:abc123def456
+Nov 15 13:45:01 server1 sshd[12345]: pam_unix(sshd:session): session opened for user user1 by (uid=0)
+Nov 15 13:46:12 server1 sshd[12346]: Invalid user guest from 10.0.0.5 port 12345
+Nov 15 13:46:12 server1 sshd[12346]: input_userauth_request: invalid user guest [preauth]
+Nov 15 13:46:12 server1 sshd[12346]: Received disconnect from 10.0.0.5: 11: Bye Bye [preauth]
+Nov 15 13:47:23 server1 sshd[12347]: Failed password for user2 from 172.16.0.10 port 67890 ssh2
+Nov 15 13:47:25 server1 sshd[12347]: Failed password for user2 from 172.16.0.10 port 67890 ssh2
+Nov 15 13:47:27 server1 sshd[12347]: Failed password for user2 from 172.16.0.10 port 67890 ssh2
+Nov 15 13:47:27 server1 sshd[12347]: PAM 2 more authentication failures; logname= uid=0 euid=0 tty=ssh ruser= rhost=172.16.0.10  user=user2
+Nov 15 13:47:27 server1 sshd[12347]: Disconnecting: Too many authentication failures for user2 [preauth]
+Nov 15 13:48:34 server1 sshd[12348]: Accepted password for admin from 192.168.1.200 port 98765 ssh2
+Nov 15 13:48:34 server1 sshd[12348]: pam_unix(sshd:session): session opened for user admin by (uid=0)
+Nov 15 13:49:45 server1 sshd[12349]: error: Bind to port 2222 on 0.0.0.0 failed: Address already in use.
+Nov 15 13:50:56 server1 sshd[12350]: subsystem request for sftp by user user1
+Nov 15 13:51:07 server1 sshd[12345]: pam_unix(sshd:session): session closed for user user1
+Nov 15 13:52:18 server1 sshd[12351]: Server listening on 0.0.0.0 port 22.
+Nov 15 13:53:29 server1 sshd[12352]: Received disconnect from 192.168.1.100: 11: disconnected by user
+Nov 15 13:54:40 server1 sshd[12353]: reverse mapping checking getaddrinfo for invalid.host [203.0.113.1] failed - POSSIBLE BREAK-IN ATTEMPT!
+Nov 15 13:55:51 server1 sshd[12354]: Postponed keyboard-interactive for user3 from 198.51.100.50 port 11223 ssh2 [preauth]
+Nov 15 13:56:02 server1 sshd[12354]: Accepted keyboard-interactive/pam for user3 from 198.51.100.50 port 11223 ssh2
