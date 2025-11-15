@@ -11,7 +11,7 @@ fi
 
 LOG_FILE=""
 LOG_FORMAT=""
-while getopts "f:F:d" opt; do
+while getopts "f:F:d:" opt; do
 	case $opt in
 		f)
 		   LOG_FILE="$OPTARG"
@@ -31,9 +31,14 @@ done
 
 if [ -z "$LOG_FILE" ]; then
 echo "ERROR: provide a log file "
-echo "Usage $0 -f <logfile>"
+echo "Usage '$0' -f <logfile>"
 exit 1
 fi
+
+ssh_ip(){
+local filename="${1:-/dev/stdin}"
+grep -Eo '([0-9]{1,3}\.){3}[0-9]{1,3}' "$filename" | sort | uniq -c | sort -nr
+}
 
 echo "Analyzing: $LOG_FILE"
 
@@ -42,11 +47,11 @@ case "$LOG_FORMAT" in
 		IP_FIELD=1
 		STATUS_FIELD=9
 		echo "TOP IP ADRESSES"
-		awk -v field="$IP_FIELD" '{print $IP_FIELD}' "$LOG_FILE" | sort | uniq -c | sort -nr | head -10
+		awk -v field="$IP_FIELD" '{print $field}' "$LOG_FILE" | sort | uniq -c | sort -nr | head -10
 		;;
 	ssh)
 		echo "TOP IP ADRESSES"
-		awk '{print $(NF-3)}' "$LOG_FILE" | sort | uniq -c | sort -nr | head -10
+		ssh_ip "$LOG_FILE"
 		;;
 	*)
 		echo "unknown file format"
@@ -56,8 +61,9 @@ esac
 
 case "$DETECTION" in
 	brute)
-		echo "Detecting brutrforce attempts..." 
-		grep -E "Failed Password|invalid user|authentication failure" "$LOG_FILE" | awk '{print $(NF-3)}' | sort | uniq -c | sort -nr
+		echo "Detecting bruteforce attempts..." 
+		grep -E "Failed password|Invalid user|authentication failure" "$LOG_FILE" | ssh_ip |
+		awk '$1 > 3 {print $0}' 
 		;;
 	injection)
 		echo "Detecting sql injection attempts ..."
