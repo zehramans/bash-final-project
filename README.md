@@ -1,14 +1,10 @@
-# █░░ █▀▀█ █▀▀▀ █▀▀▀ █▀▀ █░█ 
-# █░░ █░░█ █░▀█ █░▀█ █▀▀ ▄▀▄ 
-# ▀▀▀ ▀▀▀▀ ▀▀▀▀ ▀▀▀▀ ▀▀▀ ▀░▀
-
 # loggex
 
 **loggex** is a simple command-line tool to analyze **Apache** and **SSH** log files.  
 It prints out the IP addresses that occur the most and detects potential **brute-force** or **SQL injection** attacks.
 
 ---
-## 📦 Usage
+##  Usage
 
 ### Basic syntax
 | Flag | Description |
