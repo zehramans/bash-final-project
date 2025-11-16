@@ -23,7 +23,7 @@ while getopts "f:F:d:" opt; do
 		   DETECTION="$OPTARG"
 		   ;;
 		*)
-		   echo "Usage $0 -f <logfile>"
+		   echo "Usage $0 -f <logfile> -F <logformat> -d <detectionmode>"
 		   exit 1
 		   ;;
 	esac
