@@ -67,6 +67,8 @@ case "$DETECTION" in
 		;;
 	injection)
 		echo "Detecting sql injection attempts ..."
+		grep -Ei "union|select|'|OR|NULL|DROP|AND|SLEEP|--|#|;" "$LOG_FILE" | 
+		awk -v field="$IP_FIELD" '{print $field}' | sort | uniq -c | sort -nr | head -10
 		;;
 	*)
 		echo "unknown detection type"
