@@ -29,6 +29,15 @@ while getopts "f:F:d:" opt; do
 	esac
 done
 
+if [[ "$LOG_FORMAT" == "ssh" && "$DETECTION" == "injection" ]]; then
+    echo "error: sql injection detection is not supported for ssh logs"
+    exit 1
+fi
+
+if [[ -z "$DETECTION" ]]; then
+    DETECTION="none"
+fi
+
 if [ -z "$LOG_FILE" ]; then
 echo "ERROR: provide a log file "
 echo "Usage '$0' -f <logfile>"
@@ -60,6 +69,9 @@ case "$LOG_FORMAT" in
 esac
 
 case "$DETECTION" in
+	none)
+		echo "No detection mode selected"
+		;;
 	brute)
 		echo "Detecting bruteforce attempts..." 
 		grep -E "Failed password|Invalid user|authentication failure" "$LOG_FILE" | ssh_ip |
